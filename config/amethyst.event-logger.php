@@ -65,16 +65,29 @@ return [
         ],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
-    | Models Logged
+    | Models Loggable
     |--------------------------------------------------------------------------
     |
     | An array of classes that indicates which model event should be logged
     | You can use either the class of the model or an interface
     |
     */
-    'models-logged' => [
+    'models-loggable' => [
+        // App\Models\DummyModel::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Events Loggable
+    |--------------------------------------------------------------------------
+    |
+    | An array of classes that indicates which events should be logged
+    | You can use either the class of the model or an interface
+    |
+    */
+    'models-loggable' => [
+        // App\Events\DummyEvent::class,
     ],
 ];

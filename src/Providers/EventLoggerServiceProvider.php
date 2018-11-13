@@ -2,18 +2,19 @@
 
 namespace Railken\Amethyst\Providers;
 
+use Doctrine\Common\Inflector\Inflector;
+use Illuminate\Contracts\Queue\QueueableEntity;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
 use Railken\Amethyst\Common\CommonServiceProvider;
-use Railken\Amethyst\Managers\EventLogManager;
 use Railken\Amethyst\Managers\EventLogAttributeManager;
-use Illuminate\Support\Collection;
-use Doctrine\Common\Inflector\Inflector;
+use Railken\Amethyst\Managers\EventLogManager;
 
 class EventLoggerServiceProvider extends CommonServiceProvider
-{  
-	/**
+{
+    /**
      * Bootstrap any application services.
      */
     public function boot()
@@ -21,34 +22,65 @@ class EventLoggerServiceProvider extends CommonServiceProvider
         parent::boot();
 
         if (Schema::hasTable(Config::get('amethyst.event-logger.data.event-log.table'))) {
- 
-        	Event::listen(['eloquent.updated: *', 'eloquent.created: *', 'eloquent.deleted: *'], function($event_name, $events) {
+            Event::listen(['eloquent.updated: *', 'eloquent.created: *', 'eloquent.deleted: *'], function ($event_name, $events) {
+                // E.g. eloquent.created: Railken\Amethyst\Tests\Listeners\Foo
+                [$event, $class] = explode(': ', $event_name);
+                [$eloquent, $event] = explode('.', $event);
+                $model = $events[0];
 
-    			// E.g. eloquent.created: Railken\Amethyst\Tests\Listeners\Foo
-    			[$event, $class] = explode(": ", $event_name);
-    			[$eloquent, $event] = explode(".", $event);
-    			$model = $events[0];
+                $loggable = Collection::make(Config::get('amethyst.event-logger.models-loggable'))->filter(function ($class) use ($model) {
+                    return get_class($model) === $class || $model instanceof $class;
+                })->count();
 
+                if ($loggable === 0) {
+                    return;
+                }
 
-    			$loggable = Collection::make(Config::get('amethyst.event-logger.models-logged'))->filter(function($class) use ($model) {
-    				return get_class($model) === $class || $model instanceof $class;
-    			})->count();
+                $inflector = new Inflector();
 
-    			if ($loggable === 0) {
-    				return false;
-    			}
+                (new EventLogAttributeManager())->createOrFail([
+                    'event_log' => [
+                        'name' => $event_name,
+                    ],
+                    'name'  => $inflector->singularize($model->getTable()).'_id',
+                    'value' => $model->id,
+                ]);
+            });
 
-    			$inflector = new Inflector();
+            Event::listen(['*'], function ($event_name, $events) {
+                $event = $events[0];
 
-    			(new EventLogAttributeManager())->createOrFail([
-    				'event_log' => [
-    					'name' => $event_name
-    				], 
-    				'name' => $inflector->singularize($model->getTable()).'_id', 
-    				'value' => $model->id
-    			]);
+                $loggable = Collection::make(Config::get('amethyst.event-logger.events-loggable'))->filter(function ($class) use ($event) {
+                    return get_class($event) === $class || $event instanceof $class;
+                })->count();
+
+                if ($loggable === 0) {
+                    return;
+                }
+
+                $inflector = new Inflector();
+
+                $eventLog = (new EventLogManager())->create(['name' => $event_name])->getResource();
+
+                $properties = (new \ReflectionClass($event))->getProperties();
+                foreach ($properties as $property) {
+                    $name = $property->getName();
+
+                    if ($event->$name instanceof QueueableEntity) {
+                        $params = [
+                            'name'  => $inflector->singularize($event->$name->getTable()).'_id',
+                            'value' => $event->$name->id,
+                        ];
+                    } else {
+                        $params = [
+                            'name'  => $name,
+                            'value' => $event->$name,
+                        ];
+                    }
+
+                    (new EventLogAttributeManager())->create(array_merge($params, ['event_log_id' => $eventLog->id]));
+                }
             });
         }
     }
-
 }
