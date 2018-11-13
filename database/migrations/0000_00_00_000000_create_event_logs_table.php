@@ -14,7 +14,7 @@ class CreateEventLogsTable extends Migration
     {
         Schema::create(Config::get('amethyst.event-logger.data.event-log.table'), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->timestamps();
         });
 
