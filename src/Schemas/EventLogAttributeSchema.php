@@ -2,6 +2,7 @@
 
 namespace Railken\Amethyst\Schemas;
 
+use Railken\Amethyst\Managers\EventLogManager;
 use Railken\Lem\Attributes;
 use Railken\Lem\Schema;
 
@@ -17,12 +18,15 @@ class EventLogAttributeSchema extends Schema
         return [
             Attributes\IdAttribute::make(),
             Attributes\TextAttribute::make('name')
-                ->setRequired(true)
-                ->setUnique(true),
-            Attributes\LongTextAttribute::make('description'),
+                ->setRequired(true),
+            Attributes\TextAttribute::make('value')
+                ->setRequired(true),
+            Attributes\BelongsToAttribute::make('event_log_id')
+                ->setRelationName('event_log')
+                ->setRelationManager(EventLogManager::class)
+                ->setRequired(true),
             Attributes\CreatedAtAttribute::make(),
             Attributes\UpdatedAtAttribute::make(),
-            Attributes\DeletedAtAttribute::make(),
         ];
     }
 }

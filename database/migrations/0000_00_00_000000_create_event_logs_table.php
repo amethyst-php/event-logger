@@ -15,17 +15,16 @@ class CreateEventLogsTable extends Migration
         Schema::create(Config::get('amethyst.event-logger.data.event-log.table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->text('description')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create(Config::get('amethyst.event-logger.data.event-log-attribute.table'), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->text('description')->nullable();
+            $table->string('name');
+            $table->string('value');
+            $table->integer('event_log_id')->unsigned()->nullable();
+            $table->foreign('event_log_id')->references('id')->on(Config::get('amethyst.event-logger.data.event-log.table'));
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

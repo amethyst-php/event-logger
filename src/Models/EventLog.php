@@ -3,13 +3,12 @@
 namespace Railken\Amethyst\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
 class EventLog extends Model implements EntityContract
 {
-    use SoftDeletes, ConfigurableModel;
+    use ConfigurableModel;
 
     /**
      * Create a new Eloquent model instance.

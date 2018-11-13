@@ -17,7 +17,8 @@ class EventLogAttributeFaker extends Faker
 
         $bag = new Bag();
         $bag->set('name', $faker->name);
-        $bag->set('description', $faker->text);
+        $bag->set('value', $faker->name);
+        $bag->set('event_log', EventLogFaker::make()->parameters()->toArray());
 
         return $bag;
     }
