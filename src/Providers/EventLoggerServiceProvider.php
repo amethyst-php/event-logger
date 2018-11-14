@@ -67,16 +67,17 @@ class EventLoggerServiceProvider extends CommonServiceProvider
                 $properties = (new \ReflectionClass($event))->getProperties();
                 foreach ($properties as $property) {
                     $name = $property->getName();
+                    $value = $event->$name;
 
-                    if ($event->$name instanceof QueueableEntity) {
+                    if ($value instanceof QueueableEntity) {
                         $params = [
-                            'name'  => $inflector->singularize($event->$name->getTable()).'_id',
-                            'value' => $event->$name->id,
+                            'name'  => $inflector->singularize($value->getTable()).'_id',
+                            'value' => $value->id,
                         ];
-                    } else {
+                    } elseif (method_exists($value, '__toString') || is_scalar($value)) {
                         $params = [
                             'name'  => $name,
-                            'value' => $event->$name,
+                            'value' => $value,
                         ];
                     }
 
