@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Railken\SQ\Exceptions\QuerySyntaxException;
+use Railken\LaraEye\Filter;
 
 class EventLogsController extends RestManagerController
 {
