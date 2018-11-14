@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Schema;
 use Railken\Amethyst\Common\CommonServiceProvider;
 use Railken\Amethyst\Managers\EventLogAttributeManager;
 use Railken\Amethyst\Managers\EventLogManager;
+use Illuminate\Support\Arr;
+use Railken\Amethyst\Api\Support\Router;
 
 class EventLoggerServiceProvider extends CommonServiceProvider
 {
@@ -80,6 +82,29 @@ class EventLoggerServiceProvider extends CommonServiceProvider
 
                     (new EventLogAttributeManager())->create(array_merge($params, ['event_log_id' => $eventLog->id]));
                 }
+            });
+        }
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+        parent::register();
+        $this->loadExtraRoutes();
+    }
+
+    /**
+     * Load extras routes.
+     */
+    public function loadExtraRoutes()
+    {
+        $config = Config::get('amethyst.event-logger.http.admin.event-log');
+        if (Arr::get($config, 'enabled')) {
+            Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
+                $controller = Arr::get($config, 'controller');
+                $router->get('/stats', ['as' => 'stats', 'uses' => $controller.'@stats']);
             });
         }
     }
