@@ -87,7 +87,7 @@ return [
     | You can use either the class of the model or an interface
     |
     */
-    'models-loggable' => [
+    'events-loggable' => [
         // App\Events\DummyEvent::class,
     ],
 ];
