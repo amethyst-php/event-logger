@@ -4,15 +4,15 @@ namespace Railken\Amethyst\Providers;
 
 use Doctrine\Common\Inflector\Inflector;
 use Illuminate\Contracts\Queue\QueueableEntity;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
+use Railken\Amethyst\Api\Support\Router;
 use Railken\Amethyst\Common\CommonServiceProvider;
 use Railken\Amethyst\Managers\EventLogAttributeManager;
 use Railken\Amethyst\Managers\EventLogManager;
-use Illuminate\Support\Arr;
-use Railken\Amethyst\Api\Support\Router;
 
 class EventLoggerServiceProvider extends CommonServiceProvider
 {

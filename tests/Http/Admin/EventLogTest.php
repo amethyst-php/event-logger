@@ -34,7 +34,7 @@ class EventLogTest extends BaseTest
     protected $route = 'admin.event-log';
 
     /**
-     * Test stats
+     * Test stats.
      */
     public function testHttpStats()
     {

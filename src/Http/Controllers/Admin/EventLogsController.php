@@ -2,14 +2,14 @@
 
 namespace Railken\Amethyst\Http\Controllers\Admin;
 
-use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
-use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
-use Railken\Amethyst\Managers\EventLogManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Railken\SQ\Exceptions\QuerySyntaxException;
+use Railken\Amethyst\Api\Http\Controllers\RestManagerController;
+use Railken\Amethyst\Api\Http\Controllers\Traits as RestTraits;
+use Railken\Amethyst\Managers\EventLogManager;
 use Railken\LaraEye\Filter;
+use Railken\SQ\Exceptions\QuerySyntaxException;
 
 class EventLogsController extends RestManagerController
 {
@@ -27,7 +27,7 @@ class EventLogsController extends RestManagerController
     public $class = EventLogManager::class;
 
     /**
-     * Stats
+     * Stats.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -37,9 +37,9 @@ class EventLogsController extends RestManagerController
     {
         $query = $this->getQuery();
         /*$query->leftJoin(
-            Config::get('amethyst.event-logger.data.event-log-attribute.table')." as attributes", 
-            "attributes.event_log_id", 
-            "=", 
+            Config::get('amethyst.event-logger.data.event-log-attribute.table')." as attributes",
+            "attributes.event_log_id",
+            "=",
             Config::get('amethyst.event-logger.data.event-log.table').".id"
         );*/
 
@@ -52,7 +52,6 @@ class EventLogsController extends RestManagerController
             return $this->error(['code' => 'QUERY_SYNTAX_ERROR', 'message' => 'Syntax error']);
         }
 
-
         $query->select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d') as created_at"), DB::raw('count(*) as total'));
         $query->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"));
 
@@ -61,9 +60,9 @@ class EventLogsController extends RestManagerController
         $resources = $result->getCollection();
 
         return $this->success([
-            'data' => $resources->map(function($record) {
+            'data' => $resources->map(function ($record) {
                 return $record;
-            })->toArray()
+            })->toArray(),
         ]);
     }
 }
