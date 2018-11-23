@@ -68,6 +68,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
                 foreach ($properties as $property) {
                     $name = $property->getName();
                     $value = $event->$name;
+                    $params = [];
 
                     if ($value instanceof QueueableEntity) {
                         $params = [
