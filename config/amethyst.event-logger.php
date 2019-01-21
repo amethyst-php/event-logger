@@ -47,19 +47,19 @@ return [
     'http' => [
         'admin' => [
             'event-log' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\EventLogsController::class,
-                'router'      => [
-                    'as'        => 'event-log.',
-                    'prefix'    => '/event-logs',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\EventLogsController::class,
+                'router'     => [
+                    'as'     => 'event-log.',
+                    'prefix' => '/event-logs',
                 ],
             ],
             'event-log-attribute' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\EventLogAttributesController::class,
-                'router'      => [
-                    'as'        => 'event-log-attribute.',
-                    'prefix'    => '/event-log-attributes',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\EventLogAttributesController::class,
+                'router'     => [
+                    'as'     => 'event-log-attribute.',
+                    'prefix' => '/event-log-attributes',
                 ],
             ],
         ],
