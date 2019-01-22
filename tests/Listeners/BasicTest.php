@@ -27,7 +27,9 @@ class BasicTest extends BaseTest
     public function testEloquentEvents()
     {
         config(['amethyst.event-logger.models-loggable' => [Foo::class]]);
-        $foo = Foo::create();
+
+        $foo = new Foo();
+        $foo->save();
 
         $log = (new EventLogManager())->getRepository()->findOneBy(['name' => 'eloquent.created: '.get_class($foo)]);
         $this->assertEquals(1, $log->id);
@@ -51,7 +53,10 @@ class BasicTest extends BaseTest
     {
         config(['amethyst.event-logger.events-loggable' => [DummyEvent::class]]);
 
-        event(new DummyEvent(7, $foo = Foo::create()));
+        $foo = new Foo();
+        $foo->save();
+
+        event(new DummyEvent(7, $foo));
 
         $log = (new EventLogManager())->getRepository()->findOneBy(['name' => DummyEvent::class]);
 
