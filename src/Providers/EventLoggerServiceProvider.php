@@ -31,7 +31,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
                 $model = $events[0];
 
                 $loggable = Collection::make(Config::get('amethyst.event-logger.models-loggable'))->filter(function ($class) use ($model) {
-                    return get_class($model) === $class || $model instanceof $class;
+                    return is_object($model) && get_class($model) === $class || $model instanceof $class;
                 })->count();
 
                 if ($loggable === 0) {
@@ -53,7 +53,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
                 $event = $events[0];
 
                 $loggable = Collection::make(Config::get('amethyst.event-logger.events-loggable'))->filter(function ($class) use ($event) {
-                    return get_class($event) === $class || $event instanceof $class;
+                    return is_object($event) && get_class($event) === $class || $event instanceof $class;
                 })->count();
 
                 if ($loggable === 0) {
