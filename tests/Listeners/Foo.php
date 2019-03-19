@@ -3,8 +3,6 @@
 namespace Railken\Amethyst\Tests\Listeners;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Foo extends Model
 {
