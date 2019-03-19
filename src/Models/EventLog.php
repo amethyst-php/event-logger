@@ -3,6 +3,8 @@
 namespace Railken\Amethyst\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
@@ -22,9 +24,9 @@ class EventLog extends Model implements EntityContract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function eventAttributes()
+    public function eventAttributes(): HasMany
     {
         return $this->hasMany(EventLogAttribute::class);
     }
