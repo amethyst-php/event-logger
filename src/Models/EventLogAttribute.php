@@ -27,6 +27,6 @@ class EventLogAttribute extends Model implements EntityContract
      */
     public function event_log(): BelongsTo
     {
-        return $this->belongsTo(EventLog::class);
+        return $this->belongsTo(config('amethyst.event-logger.data.event-log.model'));
     }
 }

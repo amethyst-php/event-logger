@@ -27,6 +27,6 @@ class EventLog extends Model implements EntityContract
      */
     public function eventAttributes(): HasMany
     {
-        return $this->hasMany(EventLogAttribute::class);
+        return $this->hasMany(config('amethyst.event-logger.data.event-log-attribute.model'));
     }
 }
