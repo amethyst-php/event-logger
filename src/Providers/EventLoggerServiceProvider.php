@@ -22,6 +22,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
     public function boot()
     {
         parent::boot();
+        return;
 
         if (Schema::hasTable(Config::get('amethyst.event-logger.data.event-log.table'))) {
             Event::listen(['eloquent.updated: *', 'eloquent.created: *', 'eloquent.deleted: *'], function ($event_name, $events) {
