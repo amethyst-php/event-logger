@@ -22,6 +22,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
     public function boot()
     {
         parent::boot();
+
         return;
 
         if (Schema::hasTable(Config::get('amethyst.event-logger.data.event-log.table'))) {
@@ -54,7 +55,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
                 if (!isset($events[0])) {
                     return;
                 }
-                
+
                 $event = $events[0];
 
                 $loggable = Collection::make(Config::get('amethyst.event-logger.events-loggable'))->filter(function ($class) use ($event) {
