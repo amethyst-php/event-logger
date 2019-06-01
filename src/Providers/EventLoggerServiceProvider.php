@@ -51,6 +51,10 @@ class EventLoggerServiceProvider extends CommonServiceProvider
             });
 
             Event::listen(['*'], function ($event_name, $events) {
+                if (!isset($events[0])) {
+                    return;
+                }
+                
                 $event = $events[0];
 
                 $loggable = Collection::make(Config::get('amethyst.event-logger.events-loggable'))->filter(function ($class) use ($event) {
