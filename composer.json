@@ -7,8 +7,7 @@
         "railken/amethyst-common": "0.1.*"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.10",
-        "orchestra/testbench": "3.6.*"
+        "orchestra/testbench": "3.*"
     },
     "autoload": {
         "psr-4" : {
