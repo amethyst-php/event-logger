@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Listeners;
+namespace Amethyst\Tests\Listeners;
 
 use Illuminate\Database\Eloquent\Model;
 

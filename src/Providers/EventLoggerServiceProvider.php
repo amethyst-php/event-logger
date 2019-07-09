@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\Amethyst\Providers;
+namespace Amethyst\Providers;
 
 use Doctrine\Common\Inflector\Inflector;
 use Illuminate\Contracts\Queue\QueueableEntity;
@@ -9,10 +9,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
-use Railken\Amethyst\Api\Support\Router;
-use Railken\Amethyst\Common\CommonServiceProvider;
-use Railken\Amethyst\Managers\EventLogAttributeManager;
-use Railken\Amethyst\Managers\EventLogManager;
+use Amethyst\Api\Support\Router;
+use Amethyst\Common\CommonServiceProvider;
+use Amethyst\Managers\EventLogAttributeManager;
+use Amethyst\Managers\EventLogManager;
 
 class EventLoggerServiceProvider extends CommonServiceProvider
 {
@@ -27,7 +27,7 @@ class EventLoggerServiceProvider extends CommonServiceProvider
 
         if (Schema::hasTable(Config::get('amethyst.event-logger.data.event-log.table'))) {
             Event::listen(['eloquent.updated: *', 'eloquent.created: *', 'eloquent.deleted: *'], function ($event_name, $events) {
-                // E.g. eloquent.created: Railken\Amethyst\Tests\Listeners\Foo
+                // E.g. eloquent.created: Amethyst\Tests\Listeners\Foo
                 [$event, $class] = explode(': ', $event_name);
                 [$eloquent, $event] = explode('.', $event);
                 $model = $events[0];

@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Listeners;
+namespace Amethyst\Tests\Listeners;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Railken\Amethyst\Managers\EventLogManager;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Managers\EventLogManager;
+use Amethyst\Tests\BaseTest;
 
 class BasicTest extends BaseTest
 {

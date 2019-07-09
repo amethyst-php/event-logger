@@ -1,28 +1,28 @@
 {
-    "name": "railken/amethyst-event-logger",
+    "name": "amethyst/event-logger",
     "keywords": ["laravel", "amethyst", "amethyst-event-logger", "event-logger"],
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "railken/amethyst-common": "0.1.*"
+        "amethyst/common": "0.1.*"
     },
     "require-dev": {
         "orchestra/testbench": "3.*"
     },
     "autoload": {
         "psr-4" : {
-            "Railken\\Amethyst\\" : "src/"
+            "Amethyst\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": { 
-            "Railken\\Amethyst\\Tests\\": "tests/" 
+            "Amethyst\\Tests\\": "tests/" 
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Railken\\Amethyst\\Providers\\EventLoggerServiceProvider"
+                "Amethyst\\Providers\\EventLoggerServiceProvider"
             ]
         }
     }

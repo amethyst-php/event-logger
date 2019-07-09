@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Http\Admin;
+namespace Amethyst\Tests\Http\Admin;
 
-use Railken\Amethyst\Api\Support\Testing\TestableBaseTrait;
-use Railken\Amethyst\Fakers\EventLogFaker;
-use Railken\Amethyst\Managers\EventLogManager;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Api\Support\Testing\TestableBaseTrait;
+use Amethyst\Fakers\EventLogFaker;
+use Amethyst\Managers\EventLogManager;
+use Amethyst\Tests\BaseTest;
 use Symfony\Component\HttpFoundation\Response;
 
 class EventLogTest extends BaseTest

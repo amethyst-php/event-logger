@@ -1,10 +1,10 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Managers;
+namespace Amethyst\Tests\Managers;
 
-use Railken\Amethyst\Fakers\EventLogAttributeFaker;
-use Railken\Amethyst\Managers\EventLogAttributeManager;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Fakers\EventLogAttributeFaker;
+use Amethyst\Managers\EventLogAttributeManager;
+use Amethyst\Tests\BaseTest;
 use Railken\Lem\Support\Testing\TestableBaseTrait;
 
 class EventLogAttributeTest extends BaseTest
