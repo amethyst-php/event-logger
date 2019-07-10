@@ -2,6 +2,10 @@
 
 namespace Amethyst\Providers;
 
+use Amethyst\Api\Support\Router;
+use Amethyst\Common\CommonServiceProvider;
+use Amethyst\Managers\EventLogAttributeManager;
+use Amethyst\Managers\EventLogManager;
 use Doctrine\Common\Inflector\Inflector;
 use Illuminate\Contracts\Queue\QueueableEntity;
 use Illuminate\Support\Arr;
@@ -9,10 +13,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Schema;
-use Amethyst\Api\Support\Router;
-use Amethyst\Common\CommonServiceProvider;
-use Amethyst\Managers\EventLogAttributeManager;
-use Amethyst\Managers\EventLogManager;
 
 class EventLoggerServiceProvider extends CommonServiceProvider
 {

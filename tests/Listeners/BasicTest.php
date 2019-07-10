@@ -2,10 +2,10 @@
 
 namespace Amethyst\Tests\Listeners;
 
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Amethyst\Managers\EventLogManager;
 use Amethyst\Tests\BaseTest;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class BasicTest extends BaseTest
 {

@@ -2,12 +2,12 @@
 
 namespace Amethyst\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Amethyst\Api\Http\Controllers\RestManagerController;
 use Amethyst\Api\Http\Controllers\Traits as RestTraits;
 use Amethyst\Managers\EventLogManager;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Railken\LaraEye\Filter;
 use Railken\SQ\Exceptions\QuerySyntaxException;
 
