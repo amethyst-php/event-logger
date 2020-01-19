@@ -1,6 +1,6 @@
 # amethyst-event-logger
 
-[![Build Status](https://travis-ci.org/amethyst-php/event-logger.svg?branch=master)](https://travis-ci.org/amethyst-php/event-logger)
+[![Action Status](https://github.com/amethyst-php/event-logger/workflows/test/badge.svg)](https://github.com/amethyst-php/event-logger/actions)
 
 [Amethyst](https://github.com/amethyst-php/amethyst) package.
 

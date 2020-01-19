@@ -3,11 +3,11 @@
     "keywords": ["laravel", "amethyst", "amethyst-event-logger", "event-logger"],
     "license": "MIT",
     "require": {
-        "php": ">=7.1",
-        "amethyst/common": "0.1.*"
+        "php": ">=7.2",
+        "amethyst/core": "0.2.*"
     },
     "require-dev": {
-        "orchestra/testbench": "3.*"
+        "orchestra/testbench": "*"
     },
     "autoload": {
         "psr-4" : {
