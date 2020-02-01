@@ -2,8 +2,8 @@
 
 namespace Amethyst\Providers;
 
-use Amethyst\Core\Support\Router;
 use Amethyst\Core\Providers\CommonServiceProvider;
+use Amethyst\Core\Support\Router;
 use Amethyst\Managers\EventLogAttributeManager;
 use Amethyst\Managers\EventLogManager;
 use Doctrine\Common\Inflector\Inflector;
