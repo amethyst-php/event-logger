@@ -38,35 +38,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Http configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the routes
-    |
-    */
-    'http' => [
-        'admin' => [
-            'event-log' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\EventLogsController::class,
-                'router'     => [
-                    'as'     => 'event-log.',
-                    'prefix' => '/event-logs',
-                ],
-            ],
-            'event-log-attribute' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\EventLogAttributesController::class,
-                'router'     => [
-                    'as'     => 'event-log-attribute.',
-                    'prefix' => '/event-log-attributes',
-                ],
-            ],
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Models Loggable
     |--------------------------------------------------------------------------
     |
